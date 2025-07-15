@@ -1,7 +1,7 @@
 networks:
 
-  torrentionetwork:
-    name: torrentionetwork
+  stremionetwork:
+    name: stremionetwork
     ipam:
       config:
         - subnet: 172.40.0.0/24
@@ -22,7 +22,7 @@ services:
       - TZ=Europe/Kyiv
     restart: unless-stopped
     networks:
-      torrentionetwork:
+      stremionetwork:
         ipv4_address: 172.40.0.2
 
   jackett-plugin:
@@ -34,7 +34,7 @@ services:
       - ./jackett-plugin/.env
     restart: unless-stopped
     networks:
-      torrentionetwork:
+      stremionetwork:
         ipv4_address: 172.40.0.5
 
   stremio-web:
@@ -44,5 +44,5 @@ services:
       - 8888:80
     restart: unless-stopped
     networks:
-      torrentionetwork:
+      stremionetwork:
         ipv4_address: 172.40.0.8
