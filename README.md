@@ -12,15 +12,15 @@ This project combines three components into one Docker-based setup:
 
 ### 1. Jackett
 
-Jackett acts as a bridge between the torrent indexers and your plugin, providing torrent metadata via API.
+[Jackett](https://github.com/Jackett/Jackett), indexer, acts as a bridge between the torrent tracker and your plugin, providing torrent metadata via API.
 
 ### 2. Jackett Plugin
 
-This is the core backend service which queries Jackett, filters torrents by your configuration, and exposes a Stremio add-on API.
+[Jackett Plugin](https://github.com/asirkov/jackett-plugin), this is the core backend service which queries Jackett, filters torrents by your configuration, and exposes a Stremio add-on API.
 
 ### 3. Stremio-web
 
-A static copy of Stremio web client served via a simple web server, not allowed to stream video, only for viewing or testing.
+A static copy of [Stremio Web](https://github.com/Stremio/stremio-web) client served via a simple web server, not allowed to stream video, only for viewing or testing.
 
 ---
 
@@ -34,7 +34,7 @@ A static copy of Stremio web client served via a simple web server, not allowed 
 
 ## ⚙️ Configuration
 
-See: [Jackett Plugin](https://github.com/asirkov/jackett-plugin)
+See: [Jackett Plugin](https://github.com/asirkov/jackett-plugin?tab=readme-ov-file#%EF%B8%8F-configuration)
 
 ## 🚀 Quick Start
 
