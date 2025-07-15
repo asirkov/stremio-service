@@ -1,0 +1,11 @@
+# Jackett 
+jackett/*
+
+# Logs
+logs
+*.log
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example

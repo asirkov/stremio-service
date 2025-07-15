@@ -1,0 +1,48 @@
+networks:
+
+  torrentionetwork:
+    name: torrentionetwork
+    ipam:
+      config:
+        - subnet: 172.40.0.0/24
+
+services:
+
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    ports:
+      - 9117:9117
+    volumes:
+      - ./jackett/config:/config
+      - ./jackett/downloads:/downloads
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Kyiv
+    restart: unless-stopped
+    networks:
+      torrentionetwork:
+        ipv4_address: 172.40.0.2
+
+  jackett-plugin:
+    image: asirkov/jackett-plugin:latest
+    container_name: jackett-plugin
+    ports:
+      - 7001:7001
+    env_file:
+      - ./jackett-plugin/.env
+    restart: unless-stopped
+    networks:
+      torrentionetwork:
+        ipv4_address: 172.40.0.5
+
+  stremio-web:
+    build: ./stremio-web
+    container_name: stremio-web
+    ports:
+      - 8888:80
+    restart: unless-stopped
+    networks:
+      torrentionetwork:
+        ipv4_address: 172.40.0.8
