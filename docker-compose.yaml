@@ -29,13 +29,13 @@ services:
     image: asirkov/jackett-plugin:latest
     container_name: jackett-plugin
     ports:
-      - 7001:7001
+      - 7000:7000
     env_file:
       - ./jackett-plugin/.env
     restart: unless-stopped
     networks:
       stremionetwork:
-        ipv4_address: 172.40.0.5
+        ipv4_address: 172.40.0.3
 
   stremio-web:
     build: ./stremio-web
@@ -45,4 +45,4 @@ services:
     restart: unless-stopped
     networks:
       stremionetwork:
-        ipv4_address: 172.40.0.8
+        ipv4_address: 172.40.0.4
