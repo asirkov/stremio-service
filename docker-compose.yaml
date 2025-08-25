@@ -22,6 +22,8 @@ services:
     networks:
       stremionetwork:
         ipv4_address: 172.40.0.2
+    labels:
+      - "com.centurylinklabs.watchtower.scope=stremio-service"
 
   jackett-plugin:
     image: ghcr.io/asirkov/jackett-plugin:latest
@@ -35,6 +37,8 @@ services:
     networks:
       stremionetwork:
         ipv4_address: 172.40.0.3
+    labels:
+      - "com.centurylinklabs.watchtower.scope=stremio-service"
 
   stremio-web:
     build: ./stremio-web
@@ -54,7 +58,7 @@ services:
     command: >
       --interval 300
       --cleanup
-      jackett-plugin
+      --scope stremio-service
     restart: always
     networks:
       stremionetwork:
