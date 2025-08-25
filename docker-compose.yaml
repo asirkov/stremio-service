@@ -25,6 +25,7 @@ services:
 
   jackett-plugin:
     image: ghcr.io/asirkov/jackett-plugin:latest
+    platform: linux/arm64/v8
     container_name: jackett-plugin
     ports:
       - 7000:7000
