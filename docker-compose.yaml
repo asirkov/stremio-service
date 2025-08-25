@@ -16,17 +16,15 @@ services:
     volumes:
       - ./jackett/config:/config
       - ./jackett/downloads:/downloads
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Kyiv
+    env_file:
+      - ./jackett/.env
     restart: unless-stopped
     networks:
       stremionetwork:
         ipv4_address: 172.40.0.2
 
   jackett-plugin:
-    image: asirkov/jackett-plugin:latest
+    image: ghcr.io/asirkov/jackett-plugin:latest
     container_name: jackett-plugin
     ports:
       - 7000:7000
@@ -46,3 +44,17 @@ services:
     networks:
       stremionetwork:
         ipv4_address: 172.40.0.4
+  
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      --interval 300
+      --cleanup
+      jackett-plugin
+    restart: always
+    networks:
+      stremionetwork:
+        ipv4_address: 172.40.0.5
